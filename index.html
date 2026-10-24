@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Charlo AI Predictor - Restricted Terminal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <div class="ambient-glow"></div>
+
+  <!-- SCREEN 1: 5-SECOND HIGH-TECH LOADER -->
+  <div id="screen-loading" class="screen-view active">
+    <div class="loader-card">
+      <div class="loader-icon-wrap">
+        <svg class="chart-icon pulse" viewBox="0 0 40 40" fill="none">
+          <path d="M6 34H34" stroke="#ffffff" stroke-width="3" stroke-linecap="round"/>
+          <path d="M10 34V22" stroke="#ffffff" stroke-width="4" stroke-linecap="round"/>
+          <path d="M18 34V16" stroke="#ffffff" stroke-width="4" stroke-linecap="round"/>
+          <path d="M26 34V10" stroke="#ffffff" stroke-width="4" stroke-linecap="round"/>
+          <path d="M12 18L20 10L27 15L34 6" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M28 6H34V12" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <h2 class="loader-title">CHARLO AI PREDICTOR</h2>
+      <p class="loader-subtitle" id="loaderStatusText">Booting neural engine...</p>
+
+      <div class="progress-bar-wrap">
+        <div class="progress-bar-fill" id="progressBarFill"></div>
+      </div>
+      
+      <div class="loader-meta">
+        <span id="loaderPercent">0%</span>
+        <span class="loader-countdown">EST: <span id="countdownSeconds">5</span>s</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCREEN 2: LOGIN ACCESS PORTAL (ID: Admin, Password: Admin@123) -->
+  <div id="screen-login" class="screen-view">
+    <div class="login-card">
+      <div class="login-header">
+        <div class="login-badge">RESTRICTED ACCESS</div>
+        <h2 class="login-title">TERMINAL AUTH</h2>
+        <p class="login-subtitle">Enter operator credentials to unlock watchlist</p>
+      </div>
+
+      <form id="loginForm" class="login-form" autocomplete="off">
+        <div class="form-group">
+          <label for="usernameInput">OPERATOR ID</label>
+          <div class="input-wrap">
+            <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+            <input type="text" id="usernameInput" placeholder="Enter Operator ID" required autofocus value="Admin">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="passwordInput">SECURITY KEY</label>
+          <div class="input-wrap">
+            <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+            </svg>
+            <input type="password" id="passwordInput" placeholder="Enter Password" required>
+            <button type="button" class="password-toggle" id="passwordToggle" title="Toggle visibility">
+              <svg id="eyeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="error-msg" id="loginError">Invalid ID or Password. Try again.</div>
+
+        <button type="submit" class="login-submit-btn" id="loginBtn">
+          <span>UNLOCK TERMINAL</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </button>
+
+        <div class="login-footer-hint">
+          Standard Node ID: <code>Admin</code> &bull; Key: <code>Admin@123</code>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- SCREEN 3: MAIN DASHBOARD -->
+  <div id="screen-dashboard" class="screen-view">
+    <div class="main-container">
+      <!-- Header Section -->
+      <header class="app-header">
+        <div class="logo-area">
+          <div class="logo-icon-wrap">
+            <svg class="chart-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6 34H34" stroke="#ffffff" stroke-width="3" stroke-linecap="round"/>
+              <path d="M10 34V22" stroke="#ffffff" stroke-width="4" stroke-linecap="round"/>
+              <path d="M18 34V16" stroke="#ffffff" stroke-width="4" stroke-linecap="round"/>
+              <path d="M26 34V10" stroke="#ffffff" stroke-width="4" stroke-linecap="round"/>
+              <path d="M12 18L20 10L27 15L34 6" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M28 6H34V12" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="title-text-group">
+            <h1 class="brand-title"><span class="brand-white">WELCOME BOSS</span> <span class="brand-accent">CHARLO !</span></h1>
+            <div class="live-meta-bar">
+              <span class="live-pulse-dot"></span>
+              <span id="liveDate" class="live-date">Loading date...</span>
+              <span class="meta-dot">&bull;</span>
+              <span id="liveTime" class="live-time">00:00:00 AM</span>
+              <span class="meta-dot">&bull;</span>
+              <span class="auto-sync-tag">AUTO-SYNC: <strong id="syncTimer">10:00</strong></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="header-actions">
+          <div class="search-box-wrap">
+            <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input type="text" id="searchInput" placeholder="Search coin (name or symbol)..." autocomplete="off">
+          </div>
+          <button class="logout-btn" id="logoutBtn" title="Lock Terminal">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+            </svg>
+            <span>LOCK</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- Macro Intelligence & Accuracy Audit Bar -->
+      <div class="macro-bar">
+        <div class="macro-chip">
+          <span class="chip-label">BTC REGIME:</span>
+          <span class="chip-val" id="macroBtcRegime">ANALYZING...</span>
+        </div>
+        <div class="macro-chip">
+          <span class="chip-label">FEAR & GREED:</span>
+          <span class="chip-val" id="macroFearGreed">--</span>
+        </div>
+        <div class="macro-chip">
+          <span class="chip-label">AUDITED WIN-RATE:</span>
+          <span class="chip-val highlight" id="macroWinRate">74.5%</span>
+        </div>
+      </div>
+
+      <!-- Main Card Container -->
+      <div class="watchlist-card">
+        <div class="table-responsive">
+          <table class="crypto-table" id="cryptoTable">
+            <thead>
+              <tr>
+                <th class="th-num">#</th>
+                <th class="th-coin">Coin</th>
+                <th class="th-price">Price (INR)</th>
+                <th class="th-chance">Chance of Rise<br><span class="sub-th">(24 Hrs)</span></th>
+                <th class="th-invest">Invest?</th>
+                <th class="th-holding">Holding Time</th>
+              </tr>
+            </thead>
+            <tbody id="tableBody">
+              <tr>
+                <td colspan="6" class="loading-state">
+                  <div class="loader-spinner"></div>
+                  <p>Loading AI models and live Binance market data...</p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Footer Section -->
+      <footer class="app-footer">
+        <div class="footer-left">
+          Note: All predictions are theoretical estimates based on market data and analysis. This is not financial advice.
+        </div>
+        <div class="footer-right">
+          <span class="last-updated-text" id="lastUpdated">Last Updated: Loading...</span>
+          <button class="refresh-btn" id="refreshBtn" title="Auto Update & Re-Analyze">
+            <svg class="refresh-icon" id="refreshIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"/>
+            </svg>
+          </button>
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <!-- Deep AI Analysis Modal -->
+  <div class="modal-backdrop" id="analysisModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div class="modal-coin-title">
+          <div class="modal-avatar" id="modalAvatar"></div>
+          <div>
+            <h2 id="modalCoinName">Token Name</h2>
+            <span class="modal-badge" id="modalSector">Sector</span>
+          </div>
+        </div>
+        <button class="modal-close-btn" id="modalClose">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <div class="modal-stat-grid">
+          <div class="stat-card">
+            <span class="stat-label">24h Growth Chance</span>
+            <span class="stat-value text-green" id="modalProb">--%</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-label">Price (INR)</span>
+            <span class="stat-value" id="modalPriceInr">&#8377;0.00</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-label">Futures Funding Rate</span>
+            <span class="stat-value" id="modalFunding">0.0000%</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-label">Long / Short Ratio</span>
+            <span class="stat-value" id="modalLongShort">1.00</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-label">4h Macro Confluence</span>
+            <span class="stat-value" id="modalMacro">--</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-label">Algorithm Confidence</span>
+            <span class="stat-value" id="modalConfidence">--%</span>
+          </div>
+        </div>
+
+        <div class="analysis-box">
+          <h3>AI Diagnostic Summary</h3>
+          <p id="modalSummary">Generating analysis...</p>
+        </div>
+
+        <div class="drivers-box">
+          <h3>Key Catalyst Drivers</h3>
+          <ul id="modalDrivers"></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="./app.js"></script>
+</body>
+</html>

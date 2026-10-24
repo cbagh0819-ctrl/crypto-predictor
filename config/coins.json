@@ -1,0 +1,39 @@
+{
+  "description": "Custom tracked cryptocurrencies categorized by sector.",
+  "coins": [
+    {"symbol": "ARB/USDT", "name": "Arbitrum", "category": "Ethereum L2"},
+    {"symbol": "ADA/USDT", "name": "Cardano", "category": "Blue-chip L1"},
+    {"symbol": "POL/USDT", "name": "Polygon", "category": "Polygon L2"},
+    {"symbol": "HBAR/USDT", "name": "Hedera", "category": "Enterprise"},
+    {"symbol": "XLM/USDT", "name": "Stellar", "category": "Global Payments"},
+    {"symbol": "FET/USDT", "name": "Artificial Superintelligence Alliance", "category": "Decentralized AI"},
+    {"symbol": "JUP/USDT", "name": "Jupiter", "category": "Solana DeFi"},
+    {"symbol": "RAY/USDT", "name": "Raydium", "category": "Solana DeFi"},
+    {"symbol": "SEI/USDT", "name": "Sei Network", "category": "Parallelized L1"},
+    {"symbol": "ROSE/USDT", "name": "Oasis Network", "category": "Confidential AI/L1"},
+    {"symbol": "VIRTUAL/USDT", "name": "Virtuals Protocol", "category": "AI Agents"},
+    {"symbol": "PEPE/USDT", "name": "Pepe", "category": "Top cultural meme"},
+    {"symbol": "BONK/USDT", "name": "Bonk", "category": "Solana flagship"},
+    {"symbol": "SHIB/USDT", "name": "Shiba Inu", "category": "Multi-cycle giant"},
+    {"symbol": "BOME/USDT", "name": "Book of Meme", "category": "Solana cult meme"},
+    {"symbol": "TURBO/USDT", "name": "Turbo", "category": "AI-created meme"}
+  ],
+  "symbols": [
+    "ARB/USDT",
+    "ADA/USDT",
+    "POL/USDT",
+    "HBAR/USDT",
+    "XLM/USDT",
+    "FET/USDT",
+    "JUP/USDT",
+    "RAY/USDT",
+    "SEI/USDT",
+    "ROSE/USDT",
+    "VIRTUAL/USDT",
+    "PEPE/USDT",
+    "BONK/USDT",
+    "SHIB/USDT",
+    "BOME/USDT",
+    "TURBO/USDT"
+  ]
+}

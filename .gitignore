@@ -1,0 +1,37 @@
+# Virtual Environment
+.venv/
+env/
+venv/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Data and logs
+data/raw/*
+!data/raw/.gitkeep
+data/processed/*
+!data/processed/.gitkeep
+!data/processed/latest_predictions.json
+!data/processed/prediction_audit_ledger.json
+logs/*
+!logs/.gitkeep
+
+# Models
+models/saved_models/*
+!models/saved_models/.gitkeep
+
+# Environment variables
+.env
+.env.local
+
+# IDE
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# GitHub Workflows (requires workflow token scope)
+.github/
