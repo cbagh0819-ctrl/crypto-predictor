@@ -1,7 +1,8 @@
 # Working
-<img width="947" height="414" alt="image" src="https://github.com/user-attachments/assets/78b7e7c3-dad0-4856-b286-15c56c2ebf86" />
 
-<img width="947" height="413" alt="image" src="https://github.com/user-attachments/assets/25509556-5d22-41ef-a1c6-a2d8a6869a74" />
+<img width="948" height="412" alt="image" src="https://github.com/user-attachments/assets/63b8c694-530e-4e17-a94f-40a6fdaa2d02" />
+
+<img width="947" height="414" alt="image" src="https://github.com/user-attachments/assets/78b7e7c3-dad0-4856-b286-15c56c2ebf86" />
 
 # ⚡ AI Crypto 24-Hour Growth Predictor & Watchlist
 
