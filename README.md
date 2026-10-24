@@ -1,3 +1,8 @@
+# Working
+<img width="947" height="414" alt="image" src="https://github.com/user-attachments/assets/78b7e7c3-dad0-4856-b286-15c56c2ebf86" />
+
+<img width="947" height="413" alt="image" src="https://github.com/user-attachments/assets/25509556-5d22-41ef-a1c6-a2d8a6869a74" />
+
 # ⚡ AI Crypto 24-Hour Growth Predictor & Watchlist
 
 [![Live Website](https://img.shields.io/badge/Live%20Website-GitHub%20Pages-brightgreen?style=for-the-badge&logo=github)](https://cbagh0819-ctrl.github.io/crypto-predictor/)
