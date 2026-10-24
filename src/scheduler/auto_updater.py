@@ -45,6 +45,14 @@ class AutoUpdatePipeline:
 
         results = []
         current_prices = {}
+        
+        # Live USD to INR Rate
+        try:
+            import requests
+            r_rate = requests.get("https://api.exchangerate-api.com/v4/latest/USD", timeout=3)
+            inr_rate = float(r_rate.json().get("rates", {}).get("INR", 86.8)) if r_rate.status_code == 200 else 86.8
+        except Exception:
+            inr_rate = 86.8
 
         for symbol in symbols:
             try:
@@ -108,11 +116,33 @@ class AutoUpdatePipeline:
                 current_price = pred.get("current_price", 0.0)
                 current_prices[symbol] = current_price
 
+                # Dynamic Invest Recommendation
+                is_invest_yes = final_prob >= 54.0
+                invest = "YES" if is_invest_yes else "NO"
+                pred["invest"] = invest
+
+                # Suggested Holding Time
+                rsi = analysis.get("rsi", 50.0)
+                if not is_invest_yes:
+                    holding_time = "-"
+                elif rsi < 30 or vol_surge > 2.0:
+                    holding_time = "1-2 Hrs"
+                elif final_prob >= 65.0 and macro_bullish:
+                    holding_time = "6-12 Hrs"
+                elif final_prob >= 58.0:
+                    holding_time = "4-6 Hrs"
+                else:
+                    holding_time = "2-4 Hrs"
+
                 combined = {
                     **pred,
                     "name": coin_meta.get("name", symbol.split("/")[0]),
                     "category": coin_meta.get("category", "General"),
                     "macro_bullish": macro_bullish,
+                    "price_inr": round(current_price * inr_rate, 8),
+                    "inr_rate": inr_rate,
+                    "invest": invest,
+                    "holding_time": holding_time,
                     "funding_rate_pct": derivatives.get("funding_rate_pct", 0.0),
                     "long_short_ratio": derivatives.get("long_short_ratio", 1.0),
                     "analysis": analysis,
@@ -135,6 +165,7 @@ class AutoUpdatePipeline:
         payload = {
             "last_updated": datetime.now().strftime("%d %b %Y, %I:%M %p"),
             "total_coins": len(results),
+            "inr_rate": inr_rate,
             "macro_regime": btc_regime,
             "sentiment": sentiment,
             "accuracy_stats": stats,

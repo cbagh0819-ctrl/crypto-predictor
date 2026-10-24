@@ -157,18 +157,21 @@ function updateLiveClock() {
 // ==========================================
 // 5. LIVE PREDICTIONS & DATA PIPELINE
 // ==========================================
+let currentInrRate = 86.8;
+
 function formatINR(price) {
-  if (price === undefined || price === null) return "₹0.00";
-  if (price < 0.0001) {
-    return "₹" + price.toFixed(8);
-  } else if (price < 0.01) {
-    return "₹" + price.toFixed(6);
-  } else if (price < 1) {
-    return "₹" + price.toFixed(4);
-  } else if (price < 100) {
-    return "₹" + price.toFixed(2);
+  const num = parseFloat(price);
+  if (isNaN(num) || num <= 0) return "₹0.00";
+  if (num < 0.0001) {
+    return "₹" + num.toFixed(8);
+  } else if (num < 0.01) {
+    return "₹" + num.toFixed(6);
+  } else if (num < 1) {
+    return "₹" + num.toFixed(4);
+  } else if (num < 100) {
+    return "₹" + num.toFixed(2);
   } else {
-    return "₹" + price.toLocaleString("en-IN", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    return "₹" + num.toLocaleString("en-IN", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
   }
 }
 
@@ -197,6 +200,7 @@ async function loadPredictions() {
 
     if (!res.ok) throw new Error("Network error loading predictions");
     const data = await res.json();
+    currentInrRate = parseFloat(data.inr_rate) || 86.8;
     allPredictions = data.predictions || [];
     
     const lastUp = document.getElementById("lastUpdated");
@@ -246,6 +250,13 @@ function renderTable(predictions) {
     const avatar = getAvatarStyle(baseSymbol);
     const prob = parseFloat(coin.growth_probability) || 50.0;
     
+    // Resolve exact INR price
+    let inrVal = coin.price_inr;
+    if (inrVal === undefined || inrVal === null || inrVal === 0) {
+      const usdP = parseFloat(coin.current_price) || 0;
+      inrVal = usdP * (currentInrRate || 86.8);
+    }
+    
     let chanceClass = "medium";
     if (prob >= 30.0) {
       chanceClass = "high";
@@ -278,7 +289,7 @@ function renderTable(predictions) {
             </div>
           </div>
         </td>
-        <td class="td-price">${formatINR(coin.price_inr)}</td>
+        <td class="td-price">${formatINR(inrVal)}</td>
         <td class="td-chance">
           <span class="chance-pill ${chanceClass}">${Math.round(prob)}%</span>
         </td>
@@ -360,10 +371,11 @@ function openAnalysisModal(symbol) {
   const modalAvatar = document.getElementById("modalAvatar");
   modalAvatar.textContent = avatar.symbolClean.substring(0, 3);
 
+  const inrVal = (coin.price_inr && coin.price_inr > 0) ? coin.price_inr : (parseFloat(coin.current_price) || 0) * (currentInrRate || 86.8);
   document.getElementById("modalCoinName").textContent = `${coin.name || baseSymbol} (${baseSymbol})`;
   document.getElementById("modalSector").textContent = coin.category || "Cryptocurrency";
   document.getElementById("modalProb").textContent = `${coin.growth_probability}%`;
-  document.getElementById("modalPriceInr").textContent = formatINR(coin.price_inr);
+  document.getElementById("modalPriceInr").textContent = formatINR(inrVal);
   
   const fundingElem = document.getElementById("modalFunding");
   if (fundingElem) {
